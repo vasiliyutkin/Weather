@@ -1,0 +1,18 @@
+<% if (cities.length) { %>
+    <% _.each(cities, function(i) { %>
+    <li class="item">
+        <a href="#" class="place-list-link clearfix">
+            <p class="city"><%-i.description.split(',')[0]%></p>
+            <p class="weather-desc"><%-i.description.split(',')[1]%></p>
+            <label class="check-box" style="visibility: visible">
+                <input name="city" type="checkbox" data-city="<%-i.description.split(',')[0]%>" data-place-id="<%=i.place_id%>" class="input-hidden"/>
+                <span class="box"></span>
+            </label>
+        </a>
+    </li>
+    <%});%>
+<% } else { %>
+    <li class="item">
+        <p class="no-result">No result</p>
+    </li>
+<% } %>

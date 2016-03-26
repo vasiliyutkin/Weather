@@ -1,0 +1,85 @@
+<% if (itemCity) {%>
+<li id="<%=itemCity.placeId%>" class="item-slide <%- itemCity.currently.precipType + '-bg' %>">
+  <!--Weather-->
+  <div class="weather">
+
+    <!--Weather block-->
+    <div class="weather-block">
+      <p class="time"><%=itemCity.updateTime%></p><a href="#" class="btn icon icon-refresh"></a>
+      <h2 class="city"><%=itemCity.city%></h2>
+      <p class="date-today"><%=itemCity.currently.dayOfWeek%>, <%=itemCity.currently.month%>
+        <%=itemCity.currently.day%></p>
+      <div class="row clearfix">
+        <div class="icon icon-snow weather-icon-now"></div>
+        <div class="t-holder">
+          <p class="temperature-bg"><%- (settings.units === 'F') ? toFahrenheit(itemCity.currently.temperature) :
+            itemCity.currently.temperature %></p>
+          <p class="weather-desc"><%= itemCity.currently.summary %></p>
+        </div>
+        <div class="moon">
+          <i class="icon <%=itemCity.currently.iconMoon%>"></i>
+          <p class="time"><%=itemCity.currently.sunriseTime%></p>
+        </div>
+      </div>
+    </div>
+
+    <!--Weather Today-->
+    <div class="weather-today">
+
+      <!--Weather Today Slider-->
+      <ul class="weather-today-slider">
+        <% for(var i = 1; i < 25; i++) {%>
+          <%var item = itemCity.hourly.data[i]%>
+          <li class="weather-today-item">
+            <p class="time"><%=item.time%></p>
+            <p class="icon icon-thunderstorm weather-today-icon"></p>
+            <p class="temperature"><%- (settings.units === 'F') ? toFahrenheit(item.temperature) : item.temperature %></p>
+          </li>
+        <% } %>
+      </ul>
+
+      <!--Weather Today more-->
+      <ul class="weather-today-more clearfix">
+        <li class="weather-today-more-item">
+          <p class="icon icon-humidity weather-today-icon"></p>
+          <p class="more-item-value prefix-percent"><%=itemCity.currently.humidity%></p>
+        </li>
+        <li class="weather-today-more-item">
+          <p class="icon icon-wind-direction weather-today-icon"></p>
+          <p class="more-item-value prefix-speed"><%=itemCity.currently.windSpeed%></p>
+        </li>
+        <li class="weather-today-more-item">
+          <p class="icon icon-sunrise weather-today-icon"></p>
+          <p class="more-item-value"><%=itemCity.currently.sunriseTime%></p>
+        </li>
+        <li class="weather-today-more-item">
+          <p class="icon icon-sunset weather-today-icon"></p>
+          <p class="more-item-value"><%=itemCity.currently.sunsetTime%></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!--Weather Week-->
+  <ul class="weather-week">
+    <% for (var i = 0; i < settings.days; i++) {
+      var item = itemCity.daily.data[i];
+    %>
+    <li class="weather-week-item clearfix">
+      <div class="weather-day clearfix">
+        <span class="day"><% var dayWeek = (i == 0) ? 'today' : item.dayOfWeek.substr(0,3) %><%= dayWeek %></span>
+        <i class="icon icon-heavy-snow weather-day-icon"></i>
+      </div>
+      <div class="range-week-weather">
+        <div class="wrap v-align">
+          <span class="min-temperature"><%- (settings.units === 'F') ? toFahrenheit(item.temperatureMin) : item.temperatureMin %></span>
+          <span class="band"></span>
+          <span class="max-temperature"><%- (settings.units === 'F') ? toFahrenheit(item.temperatureMax) : item.temperatureMax %></span>
+        </div>
+      </div>
+    </li>
+    <%}%>
+  </ul>
+</li>
+
+<%}%>

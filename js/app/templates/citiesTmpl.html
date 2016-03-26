@@ -1,0 +1,14 @@
+<% _.each(cities, function(city) { %>
+<li class="item">
+    <a href="#" class="place-list-link clearfix">
+        <i class="icon icon-<%=city.currently.icon%> icon-weather"></i>
+        <p class="temperature"><%- (settings.units === 'F') ? toFahrenheit(city.currently.temperature) : city.currently.temperature %></p>
+        <p class="city"><%=city.city%></p>
+        <p class="weather-desc"><%=city.currently.summary%></p>
+        <label class="check-box">
+            <input name="city" type="checkbox" data-place-id="<%=city.placeId%>" class="input-hidden"/>
+            <span class="box"></span>
+        </label>
+    </a>
+</li>
+<%});%>

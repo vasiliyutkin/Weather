@@ -1,0 +1,25 @@
+<ul id="settings" class="settings">
+    <li class="settings-item top-bar clearfix">
+        <form class="units" id="units">
+            <input type="radio" name="units" id="celsius" data-units="C" <% if (units === 'C') { %> checked <% } %> />
+            <label class="units-c" for="celsius">C</label>
+            <input type="radio" name="units" id="fahrenheit" data-units="F" <% if (units === 'F') { %> checked <% } %>/>
+            <label class="units-f" for="fahrenheit">F</label>
+        </form>
+        <a class="btn icon icon-settings"></a>
+    </li>
+    <li id="weather-for" class="settings-item">
+        <div class=" info clearfix">
+            <p class="range-name">show weather for</p>
+            <p class="range-val prefix-day"><%= days %></p>
+        </div>
+        <div class="range"></div>
+    </li>
+    <li id="update-every" class="settings-item">
+        <div class=" info clearfix">
+            <p class="range-name">update weather every</p>
+            <p class="range-val prefix-min"><%= update %></p>
+        </div>
+        <div class="range"></div>
+    </li>
+</ul>
